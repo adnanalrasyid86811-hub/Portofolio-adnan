@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adnan Al Rasyid - Personal Branding Portfolio</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#0A0A0E',
+                            card: '#12121A',
+                            accent: '#E11D48', /* Crimson Red */
+                            glow: '#9F1239',
+                            muted: '#94A3B8'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Custom CSS for specialized effects -->
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #0A0A0E;
+            overflow-x: hidden;
+        }
+        .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0A0A0E;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272A;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #E11D48;
+        }
+        /* Mouse Tracker Glow Effect */
+        .mouse-glow {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(225, 29, 72, 0.15) 0%, rgba(159, 18, 57, 0.05) 50%, transparent 100%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            transform: translate(-50%, -50%);
+            transition: width 0.3s, height 0.3s;
+        }
+        /* Reveal animations on scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="text-white antialiased">
+
+    <!-- Mouse ambient glow background element -->
+    <div class="mouse-glow hidden md:block" id="ambient-glow"></div>
+
+    <!-- Header / Navbar -->
+    <header class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-brand-dark/75 border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#hero" class="flex items-center space-x-2 group">
+                <span class="w-2 h-2 rounded-full bg-brand-accent group-hover:scale-150 transition-all duration-300"></span>
+                <span class="font-display font-bold text-lg tracking-wider text-white group-hover:text-brand-accent transition-colors">A.R</span>
+            </a>
+            
+            <!-- Desktop Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#about" class="text-sm font-medium text-brand-muted hover:text-white transition-colors">Tentang Saya</a>
+                <a href="#skills" class="text-sm font-medium text-brand-muted hover:text-white transition-colors">Keahlian</a>
+                <a href="#portfolio" class="text-sm font-medium text-brand-muted hover:text-white transition-colors">Portofolio</a>
+                <a href="#contact" class="text-sm font-medium text-brand-muted hover:text-white transition-colors">Hubungi</a>
+            </nav>
+
+            <!-- Social Quicklinks -->
+            <div class="hidden md:flex items-center space-x-4 text-brand-muted text-sm">
+                <a href="https://instagram.com" target="_blank" class="hover:text-brand-accent transition-colors"><i class="fa-brands fa-instagram text-lg"></i></a>
+                <a href="https://tiktok.com" target="_blank" class="hover:text-brand-accent transition-colors"><i class="fa-brands fa-tiktok text-lg"></i></a>
+                <a href="https://youtube.com" target="_blank" class="hover:text-brand-accent transition-colors"><i class="fa-brands fa-youtube text-lg"></i></a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-white focus:outline-none" id="mobile-menu-btn" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Dropdown Menu -->
+        <div class="hidden md:hidden absolute top-full left-0 w-full bg-brand-dark/95 border-b border-white/5 backdrop-blur-lg transition-all" id="mobile-dropdown">
+            <div class="px-6 py-6 flex flex-col space-y-4">
+                <a href="#about" class="mobile-nav-link text-base font-medium text-brand-muted hover:text-white transition-colors">Tentang Saya</a>
+                <a href="#skills" class="mobile-nav-link text-base font-medium text-brand-muted hover:text-white transition-colors">Keahlian</a>
+                <a href="#portfolio" class="mobile-nav-link text-base font-medium text-brand-muted hover:text-white transition-colors">Portofolio</a>
+                <a href="#contact" class="mobile-nav-link text-base font-medium text-brand-muted hover:text-white transition-colors">Hubungi</a>
+                <div class="pt-4 border-t border-white/5 flex space-x-6 justify-center text-brand-muted">
+                    <a href="https://instagram.com" target="_blank" class="hover:text-brand-accent transition-colors"><i class="fa-brands fa-instagram text-xl"></i></a>
+                    <a href="https://tiktok.com" target="_blank" class="hover:text-brand-accent transition-colors"><i class="fa-brands fa-tiktok text-xl"></i></a>
+                    <a href="https://youtube.com" target="_blank" class="hover:text-brand-accent transition-colors"><i class="fa-brands fa-youtube text-xl"></i></a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Custom Toast Notification Container -->
+    <div id="toast-container" class="fixed top-24 right-6 z-50 pointer-events-none"></div>
+
+    <!-- AI Chatbot Floating Container -->
+    <div id="chat-container" class="fixed bottom-6 right-6 z-40 transition-all duration-300 transform scale-100 origin-bottom-right">
+        <!-- Chat Toggle Button -->
+        <button id="chat-toggle-btn" class="w-14 h-14 rounded-full bg-brand-accent text-white flex items-center justify-center shadow-lg shadow-brand-accent/30 hover:shadow-brand-accent/50 transition-all hover:scale-110 active:scale-95 focus:outline-none">
+            <i class="fa-solid fa-robot text-2xl" id="chat-icon"></i>
+        </button>
+
+        <!-- Chat Window -->
+        <div id="chat-window" class="hidden absolute bottom-16 right-0 w-[350px] sm:w-[400px] h-[500px] rounded-3xl bg-brand-card/90 border border-white/10 backdrop-blur-lg shadow-2xl overflow-hidden flex flex-col transition-all duration-300 scale-100 origin-bottom-right">
+            <!-- Chat Header -->
+            <div class="p-5 border-b border-white/5 flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 rounded-lg bg-brand-accent/10 flex items-center justify-center text-brand-accent">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-display font-bold text-white text-base">Adnan AI Chat</h4>
+                        <div class="text-xs text-brand-muted flex items-center space-x-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                            <span>Powered by simulated Gemini</span>
+                        </div>
+                    </div>
+                </div>
+                <button id="chat-close-btn" class="text-brand-muted hover:text-white transition-colors p-1" aria-label="Close chat">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Chat Messages Area -->
+            <div id="chat-messages" class="flex-1 p-5 space-y-4 overflow-y-auto text-sm text-brand-muted font-light leading-relaxed">
+                <!-- Messages will be injected here via JS -->
+            </div>
+
+            <!-- Chat Input Area -->
+            <div class="p-4 border-t border-white/5 bg-white/5">
+                <form id="chat-input-form" class="flex items-center space-x-2">
+                    <input type="text" id="chat-input" required class="flex-1 bg-white/5 border border-white/10 rounded-full px-4 py-2.5 text-sm text-white placeholder-white/20 focus:border-brand-accent focus:outline-none transition-colors" placeholder="Tanyakan apa saja tentang Adnan...">
+                    <button type="submit" id="chat-send-btn" class="w-10 h-10 rounded-full bg-brand-accent text-white flex items-center justify-center hover:bg-rose-700 transition-colors focus:outline-none">
+                        <i class="fa-solid fa-paper-plane text-xs"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <main class="relative z-10">
+
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen flex items-center justify-center relative pt-24 pb-16 px-6 overflow-hidden">
+            <!-- Ambient Light Source behind the Hero -->
+            <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-brand-accent/10 blur-[100px] rounded-full -z-10 pointer-events-none"></div>
+
+            <div class="max-w-4xl mx-auto text-center flex flex-col items-center">
+                <!-- Profile Image Frame with Dynamic Red Border & Shadows -->
+                <div class="relative group mb-8 reveal active">
+                    <!-- Elegant animated glowing boundary -->
+                    <div class="absolute -inset-1 bg-gradient-to-r from-brand-accent via-pink-600 to-rose-700 rounded-full blur-md opacity-80 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+                    
+                    <!-- Circular Masked Container with 1:1 Aspect Ratio -->
+                    <div class="relative rounded-full w-48 h-48 md:w-56 md:h-56 overflow-hidden border-4 border-brand-dark shadow-[0_0_50px_rgba(225,29,72,0.3)] bg-brand-card flex items-center justify-center">
+                        <img 
+                            src="Adnan Al Rasyid.jpg" 
+                            alt="Adnan Al Rasyid" 
+                            class="w-full h-full object-cover object-top transition duration-500 scale-100 group-hover:scale-105"
+                            onerror="this.src='https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=80'"
+                        >
+                    </div>
+                </div>
+
+                <!-- Tagline Badge -->
+                <div class="inline-flex items-center space-x-2 bg-white/5 border border-white/10 px-4 py-1.5 rounded-full mb-6 backdrop-blur-sm reveal active">
+                    <span class="w-1.5 h-1.5 rounded-full bg-brand-accent animate-ping"></span>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-brand-muted"><i class="fa-solid fa-location-dot mr-1"></i> Bandung, Indonesia</span>
+                </div>
+
+                <!-- Big Name -->
+                <h1 class="font-display text-4xl md:text-7xl font-bold tracking-tight text-white mb-4 reveal active">
+                    Adnan Al Rasyid
+                </h1>
+
+                <!-- Profession Badge Grid -->
+                <div class="flex flex-wrap items-center justify-center gap-2 mb-6 text-sm md:text-base font-medium text-brand-accent reveal active">
+                    <span>Content Creator</span>
+                    <span class="w-1 h-1 bg-white/35 rounded-full hidden sm:inline-block"></span>
+                    <span>Researcher</span>
+                    <span class="w-1 h-1 bg-white/35 rounded-full hidden sm:inline-block"></span>
+                    <span>Founder FlowerCast</span>
+                </div>
+
+                <!-- Tagline Quote -->
+                <p class="text-lg md:text-xl text-brand-muted max-w-2xl font-light italic mb-10 leading-relaxed reveal active">
+                    "Knowledge is power. Character is more."
+                </p>
+
+                <!-- Navigation Buttons -->
+                <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto reveal active">
+                    <a href="#about" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-white text-brand-dark font-semibold text-sm hover:bg-brand-accent hover:text-white transition-all duration-300 shadow-lg shadow-white/5 hover:shadow-brand-accent/25 hover:-translate-y-0.5 text-center">
+                        Tentang Saya
+                    </a>
+                    <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-brand-card text-white font-semibold text-sm border border-white/10 hover:border-brand-accent hover:bg-brand-accent/5 transition-all duration-300 hover:-translate-y-0.5 text-center flex items-center justify-center space-x-2">
+                        <span>Hubungi Saya</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="py-24 px-6 relative border-t border-white/5">
+            <div class="max-w-5xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                    
+                    <!-- Left: Section Title -->
+                    <div class="lg:col-span-4 lg:sticky lg:top-28 reveal">
+                        <div class="inline-flex items-center space-x-2 text-brand-accent font-semibold tracking-wider uppercase text-xs mb-3">
+                            <span class="w-6 h-0.5 bg-brand-accent"></span>
+                            <span>Profil Singkat</span>
+                        </div>
+                        <h2 class="font-display text-3xl md:text-5xl font-bold tracking-tight mb-4">Tentang<br>Diri Saya.</h2>
+                        <div class="w-16 h-1.5 bg-brand-accent rounded-full mb-6"></div>
+                    </div>
+
+                    <!-- Right: Narrative and Core Focus -->
+                    <div class="lg:col-span-8 space-y-8 text-brand-muted text-base md:text-lg leading-relaxed font-light reveal">
+                        <p class="text-white font-normal text-xl">
+                            Saya menjembatani jurang pemisah antara riset teoretis yang mendalam dengan penyampaian media digital yang kreatif, edukatif, dan inklusif.
+                        </p>
+                        <p>
+                            Sebagai seorang akademisi sekaligus kreator, aktivitas harian saya berkisar pada menggali data yang valid, menganalisis fenomena kebijakan sosial-kemasyarakatan, serta mengemasnya menjadi konten yang memiliki nilai edukasi tinggi. Pendirian <span class="text-white font-medium">FlowerCast</span> adalah wujud konkret dari visi saya untuk menyediakan platform penyiaran alternatif yang mencerahkan pikiran masyarakat Indonesia.
+                        </p>
+
+                        <!-- Highlights Grid -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-6 text-sm">
+                            <div class="p-6 rounded-2xl bg-brand-card border border-white/5 flex items-start space-x-4">
+                                <div class="p-3 rounded-lg bg-brand-accent/10 text-brand-accent">
+                                    <i class="fa-solid fa-microscope text-lg"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-white mb-1">Riset & Analisis</h3>
+                                    <p class="text-brand-muted text-xs">Meneliti dinamika sosial, olahraga, dan kebijakan publik berbasis data.</p>
+                                </div>
+                            </div>
+                            <div class="p-6 rounded-2xl bg-brand-card border border-white/5 flex items-start space-x-4">
+                                <div class="p-3 rounded-lg bg-brand-accent/10 text-brand-accent">
+                                    <i class="fa-solid fa-tower-broadcast text-lg"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-white mb-1">Media Digital & Branding</h3>
+                                    <p class="text-brand-muted text-xs">Membangun narasi kuat di platform sosial serta personal branding adaptif.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-24 px-6 bg-brand-card/30 border-t border-white/5 relative">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                    <span class="text-xs font-semibold uppercase tracking-widest text-brand-accent mb-3 block">Kombinasi Multidimensi</span>
+                    <h2 class="font-display text-3xl md:text-5xl font-bold tracking-tight">Keahlian & Kompetensi</h2>
+                    <p class="text-brand-muted mt-4 font-light">Kumpulan kemampuan interdisipliner untuk menunjang penyampaian pesan yang berbobot secara efektif.</p>
+                </div>
+
+                <!-- Skill Bars Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 reveal">
+                    
+                    <!-- Research -->
+                    <div class="bg-brand-card p-6 rounded-2xl border border-white/5 hover:border-brand-accent/30 transition-all group">
+                        <div class="flex justify-between items-center mb-3">
+                            <div class="flex items-center space-x-3">
+                                <span class="w-8 h-8 rounded-lg bg-brand-accent/10 flex items-center justify-center text-brand-accent"><i class="fa-solid fa-magnifying-glass-chart"></i></span>
+                                <span class="font-bold text-white group-hover:text-brand-accent transition-colors">Research</span>
+                            </div>
+                            <span class="text-sm font-semibold text-brand-accent">90%</span>
+                        </div>
+                        <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden">
+                            <div class="bg-brand-accent h-full rounded-full transition-all duration-1000" style="width: 90%"></div>
+                        </div>
+                        <p class="text-xs text-brand-muted mt-3">Metodologi kualitatif, pengolahan literatur ilmiah, analisis kebijakan publik, kajian sepak bola secara sosiologis.</p>
+                    </div>
+
+                    <!-- Public Speaking -->
+                    <div class="bg-brand-card p-6 rounded-2xl border border-white/5 hover:border-brand-accent/30 transition-all group">
+                        <div class="flex justify-between items-center mb-3">
+                            <div class="flex items-center space-x-3">
+                                <span class="w-8 h-8 rounded-lg bg-brand-accent/10 flex items-center justify-center text-brand-accent"><i class="fa-solid fa-microphone"></i></span>
+                                <span class="font-bold text-white group-hover:text-brand-accent transition-colors">Public Speaking</span>
+                            </div>
+                            <span class="text-sm font-semibold text-brand-accent">85%</span>
+                        </div>
+                        <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden">
+                            <div class="bg-brand-accent h-full rounded-full transition-all duration-1000" style="width: 85%"></div>
+                        </div>
+                        <p class="text-xs text-brand-muted mt-3">Pembawa acara, moderator diskusi ilmiah, pembicara seminar, podcast host dengan penyampaian dinamis.</p>
+                    </div>
+
+                    <!-- Content Strategy -->
+                    <div class="bg-brand-card p-6 rounded-2xl border border-white/5 hover:border-brand-accent/30 transition-all group">
+                        <div class="flex justify-between items-center mb-3">
+                            <div class="flex items-center space-x-3">
+                                <span class="w-8 h-8 rounded-lg bg-brand-accent/10 flex items-center justify-center text-brand-accent"><i class="fa-solid fa-compass-drafting"></i></span>
+                                <span class="font-bold text-white group-hover:text-brand-accent transition-colors">Content Strategy</span>
+                            </div>
+                            <span class="text-sm font-semibold text-brand-accent">88%</span>
+                        </div>
+                        <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden">
+                            <div class="bg-brand-accent h-full rounded-full transition-all duration-1000" style="width: 88%"></div>
+                        </div>
+                        <p class="text-xs text-brand-muted mt-3">Penyusunan naskah edukatif, perancangan narasi konten multimedia, optimasi funnel penyebaran wawasan sains populer.</p>
+                    </div>
+
+                    <!-- Social Media Management -->
+                    <div class="bg-brand-card p-6 rounded-2xl border border-white/5 hover:border-brand-accent/30 transition-all group">
+                        <div class="flex justify-between items-center mb-3">
+                            <div class="flex items-center space-x-3">
+                                <span class="w-8 h-8 rounded-lg bg-brand-accent/10 flex items-center justify-center text-brand-accent"><i class="fa-solid fa-chart-line"></i></span>
+                                <span class="font-bold text-white group-hover:text-brand-accent transition-colors">Social Media Management</span>
+                            </div>
+                            <span class="text-sm font-semibold text-brand-accent">82%</span>
+                        </div>
+                        <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden">
+                            <div class="bg-brand-accent h-full rounded-full transition-all duration-1000" style="width: 82%"></div>
+                        </div>
+                        <p class="text-xs text-brand-muted mt-3">Manajemen distribusi konten multi-platform, analisis performa metrik organik, optimasi interaksi audiens.</p>
+                    </div>
+
+                    <!-- Journalism -->
+                    <div class="bg-brand-card p-6 rounded-2xl border border-white/5 hover:border-brand-accent/30 transition-all group">
+                        <div class="flex justify-between items-center mb-3">
+                            <div class="flex items-center space-x-3">
+                                <span class="w-8 h-8 rounded-lg bg-brand-accent/10 flex items-center justify-center text-brand-accent"><i class="fa-solid fa-newspaper"></i></span>
+                                <span class="font-bold text-white group-hover:text-brand-accent transition-colors">Journalism</span>
+                            </div>
+                            <span class="text-sm font-semibold text-brand-accent">80%</span>
+                        </div>
+                        <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden">
+                            <div class="bg-brand-accent h-full rounded-full transition-all duration-1000" style="width: 80%"></div>
+                        </div>
+                        <p class="text-xs text-brand-muted mt-3">Investigasi fenomena sosial, teknik penulisan berita komprehensif, penyuntingan editorial kritis serta etis.</p>
+                    </div>
+
+                    <!-- Web Development -->
+                    <div class="bg-brand-card p-6 rounded-2xl border border-white/5 hover:border-brand-accent/30 transition-all group">
+                        <div class="flex justify-between items-center mb-3">
+                            <div class="flex items-center space-x-3">
+                                <span class="w-8 h-8 rounded-lg bg-brand-accent/10 flex items-center justify-center text-brand-accent"><i class="fa-solid fa-code"></i></span>
+                                <span class="font-bold text-white group-hover:text-brand-accent transition-colors">Web Development</span>
+                            </div>
+                            <span class="text-sm font-semibold text-brand-accent">75%</span>
+                        </div>
+                        <div class="w-full bg-white/5 h-2 rounded-full overflow-hidden">
+                            <div class="bg-brand-accent h-full rounded-full transition-all duration-1000" style="width: 75%"></div>
+                        </div>
+                        <p class="text-xs text-brand-muted mt-3">Pembuatan arsitektur website responsif, integrasi media interaktif, optimalisasi performa platform digital.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="py-24 px-6 border-t border-white/5 relative">
+            <div class="max-w-5xl mx-auto">
+                <div class="text-center max-w-2xl mx-auto mb-16 reveal">
+                    <span class="text-xs font-semibold uppercase tracking-widest text-brand-accent mb-3 block">Hasil Karya & Dedikasi</span>
+                    <h2 class="font-display text-3xl md:text-5xl font-bold tracking-tight">Karya Terpilih</h2>
+                    <p class="text-brand-muted mt-4 font-light">Proyek, inisiatif, dan publikasi penelitian yang berkontribusi menyebarluaskan gagasan kritis bagi khalayak ramai.</p>
+                </div>
+
+                <!-- Grid Portfolio Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 reveal">
+                    
+                    <!-- Card 1: FlowerCast -->
+                    <div class="bg-brand-card rounded-2xl border border-white/5 overflow-hidden hover:border-brand-accent/30 hover:shadow-2xl hover:shadow-brand-accent/5 transition-all duration-300 group flex flex-col justify-between">
+                        <div>
+                            <div class="relative overflow-hidden aspect-[16/10] bg-slate-900 flex items-center justify-center p-6 border-b border-white/5">
+                                <i class="fa-solid fa-podcast text-6xl text-brand-accent group-hover:scale-110 transition duration-300"></i>
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-card to-transparent opacity-80"></div>
+                                <span class="absolute top-4 left-4 bg-brand-accent/20 border border-brand-accent/50 text-brand-accent text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Founder</span>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-display text-xl font-bold text-white mb-2 group-hover:text-brand-accent transition-colors">FlowerCast</h3>
+                                <p class="text-sm text-brand-muted font-light line-clamp-3">
+                                    Platform podcast inovatif berbasis edukasi yang berfokus mendiskusikan gagasan mendalam tentang perubahan sosial, ekologi, budaya pop, dan pola pikir kritis secara mendalam dan interaktif.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-2">
+                            <button onclick="openModal('flowercast')" class="inline-flex items-center space-x-2 text-xs font-semibold text-brand-accent hover:text-white transition-colors">
+                                <span>Lihat Selengkapnya</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Card 2: Project Media Broadcasting -->
+                    <div class="bg-brand-card rounded-2xl border border-white/5 overflow-hidden hover:border-brand-accent/30 hover:shadow-2xl hover:shadow-brand-accent/5 transition-all duration-300 group flex flex-col justify-between">
+                        <div>
+                            <div class="relative overflow-hidden aspect-[16/10] bg-slate-900 flex items-center justify-center p-6 border-b border-white/5">
+                                <i class="fa-solid fa-video text-6xl text-brand-accent group-hover:scale-110 transition duration-300"></i>
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-card to-transparent opacity-80"></div>
+                                <span class="absolute top-4 left-4 bg-white/10 border border-white/20 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Broadcasting</span>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-display text-xl font-bold text-white mb-2 group-hover:text-brand-accent transition-colors">Project Media Broadcasting</h3>
+                                <p class="text-sm text-brand-muted font-light line-clamp-3">
+                                    Inisiatif pemanfaatan teknologi broadcasting mutakhir untuk merancang, mengedit, serta mempublikasikan hasil riset akademis ke format konten video vertikal berdaya sebar organik tinggi.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-2">
+                            <button onclick="openModal('broadcasting')" class="inline-flex items-center space-x-2 text-xs font-semibold text-brand-accent hover:text-white transition-colors">
+                                <span>Lihat Selengkapnya</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Card 3: Penelitian Sepak Bola & Kebijakan Publik -->
+                    <div class="bg-brand-card rounded-2xl border border-white/5 overflow-hidden hover:border-brand-accent/30 hover:shadow-2xl hover:shadow-brand-accent/5 transition-all duration-300 group flex flex-col justify-between">
+                        <div>
+                            <div class="relative overflow-hidden aspect-[16/10] bg-slate-900 flex items-center justify-center p-6 border-b border-white/5">
+                                <i class="fa-solid fa-ranking-star text-6xl text-brand-accent group-hover:scale-110 transition duration-300"></i>
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-card to-transparent opacity-80"></div>
+                                <span class="absolute top-4 left-4 bg-white/10 border border-white/20 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Research</span>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-display text-xl font-bold text-white mb-2 group-hover:text-brand-accent transition-colors">Penelitian Sepak Bola & Kebijakan</h3>
+                                <p class="text-sm text-brand-muted font-light line-clamp-3">
+                                    Analisis sosiologi olahraga dan tinjauan komprehensif atas tata kelola, kemitraan strategis klub, relasi suporter, serta intervensi regulasi pemerintah untuk perbaikan ekosistem sepak bola nasional.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-2">
+                            <button onclick="openModal('sepakbola')" class="inline-flex items-center space-x-2 text-xs font-semibold text-brand-accent hover:text-white transition-colors">
+                                <span>Lihat Selengkapnya</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Card 4: Personal Branding Project -->
+                    <div class="bg-brand-card rounded-2xl border border-white/5 overflow-hidden hover:border-brand-accent/30 hover:shadow-2xl hover:shadow-brand-accent/5 transition-all duration-300 group flex flex-col justify-between">
+                        <div>
+                            <div class="relative overflow-hidden aspect-[16/10] bg-slate-900 flex items-center justify-center p-6 border-b border-white/5">
+                                <i class="fa-solid fa-id-card-clip text-6xl text-brand-accent group-hover:scale-110 transition duration-300"></i>
+                                <div class="absolute inset-0 bg-gradient-to-t from-brand-card to-transparent opacity-80"></div>
+                                <span class="absolute top-4 left-4 bg-brand-accent/20 border border-brand-accent/50 text-brand-accent text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Strategy</span>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-display text-xl font-bold text-white mb-2 group-hover:text-brand-accent transition-colors">Personal Branding Project</h3>
+                                <p class="text-sm text-brand-muted font-light line-clamp-3">
+                                    Penyusunan blueprint personal branding bagi para akademisi, analis riset, serta kreator pemula guna mengoptimalkan profil digital, kehadiran publik, dan efektivitas komunikasi ide.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="px-6 pb-6 pt-2">
+                            <button onclick="openModal('personalbranding')" class="inline-flex items-center space-x-2 text-xs font-semibold text-brand-accent hover:text-white transition-colors">
+                                <span>Lihat Selengkapnya</span>
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-24 px-6 bg-brand-card/30 border-t border-white/5 relative">
+            <div class="max-w-5xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    
+                    <!-- Left: Contact info -->
+                    <div class="lg:col-span-5 reveal">
+                        <span class="text-xs font-semibold uppercase tracking-widest text-brand-accent mb-3 block">Mari Berkolaborasi</span>
+                        <h2 class="font-display text-3xl md:text-5xl font-bold tracking-tight mb-6">Hubungi Saya</h2>
+                        <p class="text-brand-muted mb-8 font-light text-base leading-relaxed">
+                            Punya ide program menarik? Tertarik membahas hasil penelitian sosial, atau ingin berdiskusi mengenai proyek kolaborasi media? Kirimkan pesan sekarang juga.
+                        </p>
+
+                        <!-- Social List Buttons -->
+                        <div class="space-y-4">
+                            <a href="https://instagram.com" target="_blank" class="flex items-center space-x-4 p-4 rounded-xl bg-brand-card border border-white/5 hover:border-brand-accent/30 transition-all group">
+                                <div class="w-10 h-10 rounded-lg bg-pink-500/10 text-pink-500 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                                    <i class="fa-brands fa-instagram"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs text-brand-muted font-medium">Instagram</h4>
+                                    <p class="text-sm text-white font-semibold">@adnanrasyid_</p>
+                                </div>
+                            </a>
+
+                            <a href="https://tiktok.com" target="_blank" class="flex items-center space-x-4 p-4 rounded-xl bg-brand-card border border-white/5 hover:border-brand-accent/30 transition-all group">
+                                <div class="w-10 h-10 rounded-lg bg-white/10 text-white flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                                    <i class="fa-brands fa-tiktok"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs text-brand-muted font-medium">TikTok</h4>
+                                    <p class="text-sm text-white font-semibold">@adnanalrasyid</p>
+                                </div>
+                            </a>
+
+                            <a href="https://youtube.com" target="_blank" class="flex items-center space-x-4 p-4 rounded-xl bg-brand-card border border-white/5 hover:border-brand-accent/30 transition-all group">
+                                <div class="w-10 h-10 rounded-lg bg-red-600/10 text-red-600 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
+                                    <i class="fa-brands fa-youtube"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs text-brand-muted font-medium">YouTube</h4>
+                                    <p class="text-sm text-white font-semibold">Adnan Al Rasyid</p>
+                                </div>
+                            </a>
+
+                            <div class="flex items-center space-x-4 p-4 rounded-xl bg-brand-card border border-white/5">
+                                <div class="w-10 h-10 rounded-lg bg-brand-accent/10 text-brand-accent flex items-center justify-center text-lg">
+                                    <i class="fa-regular fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xs text-brand-muted font-medium">Email Resmi</h4>
+                                    <p class="text-sm text-white font-semibold">contact@adnanalrasyid.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Form -->
+                    <div class="lg:col-span-7 reveal">
+                        <div class="bg-brand-card p-8 rounded-3xl border border-white/5 relative">
+                            <h3 class="font-display text-xl font-bold mb-6 text-white">Kirim Pesan Langsung</h3>
+                            <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-5">
+                                <div>
+                                    <label for="form-name" class="block text-xs font-semibold text-brand-muted uppercase tracking-wider mb-2">Nama Lengkap</label>
+                                    <input type="text" id="form-name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/20 focus:border-brand-accent focus:outline-none transition-colors" placeholder="Masukkan nama Anda...">
+                                </div>
+                                <div>
+                                    <label for="form-email" class="block text-xs font-semibold text-brand-muted uppercase tracking-wider mb-2">Alamat Email</label>
+                                    <input type="email" id="form-email" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/20 focus:border-brand-accent focus:outline-none transition-colors" placeholder="nama@email.com">
+                                </div>
+                                <div>
+                                    <label for="form-message" class="block text-xs font-semibold text-brand-muted uppercase tracking-wider mb-2">Isi Pesan</label>
+                                    <textarea id="form-message" rows="4" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-white/20 focus:border-brand-accent focus:outline-none transition-colors" placeholder="Bagaimana saya bisa membantu Anda?"></textarea>
+                                </div>
+                                <button type="submit" class="w-full py-4 bg-brand-accent text-white font-bold text-sm rounded-xl hover:bg-rose-700 hover:shadow-lg hover:shadow-brand-accent/25 transition-all flex items-center justify-center space-x-2">
+                                    <span>Kirim Pesan</span>
+                                    <i class="fa-regular fa-paper-plane text-xs"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal Dialog System for Portfolio Details -->
+    <div id="portfolio-modal" class="fixed inset-0 z-50 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            
+            <!-- Background overlay -->
+            <div class="fixed inset-0 transition-opacity bg-brand-dark/90 backdrop-blur-sm" onclick="closeModal()"></div>
+
+            <!-- Trick to center modal in screen -->
+            <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+
+            <!-- Modal Panel -->
+            <div class="inline-block align-bottom bg-brand-card border border-white/10 rounded-3xl text-left overflow-hidden shadow-2xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
+                <div class="p-8">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="flex items-center space-x-3">
+                            <span class="p-2.5 rounded-lg bg-brand-accent/10 text-brand-accent text-xl" id="modal-icon">
+                                <i class="fa-solid fa-info"></i>
+                            </span>
+                            <h3 class="text-2xl font-display font-bold text-white" id="modal-title">Judul Portofolio</h3>
+                        </div>
+                        <button onclick="closeModal()" class="text-brand-muted hover:text-white transition-colors p-1" aria-label="Close modal">
+                            <i class="fa-solid fa-xmark text-xl"></i>
+                        </button>
+                    </div>
+
+                    <!-- Dynamic Content -->
+                    <div class="space-y-4 text-brand-muted text-sm leading-relaxed" id="modal-content">
+                        <!-- Content injected via JS -->
+                    </div>
+                </div>
+                <!-- Modal Footer -->
+                <div class="bg-white/5 px-8 py-4 flex justify-end space-x-3 border-t border-white/5">
+                    <button onclick="closeModal()" class="px-5 py-2.5 bg-white/10 text-white rounded-xl text-xs font-semibold hover:bg-white/15 transition-all">Tutup</button>
+                    <a href="#contact" onclick="closeModal()" class="px-5 py-2.5 bg-brand-accent text-white rounded-xl text-xs font-semibold hover:bg-rose-700 hover:shadow-lg hover:shadow-brand-accent/20 transition-all">Diskusikan Proyek Ini</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark border-t border-white/5 py-12 px-6 relative z-10">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between text-brand-muted text-sm gap-6">
+            <div>
+                <p class="font-display font-bold text-white text-lg tracking-wider mb-1">Adnan Al Rasyid</p>
+                <p class="font-light text-xs">Peneliti, Pembuat Konten, Pendiri Media</p>
+            </div>
+            
+            <div class="flex space-x-6 text-xs">
+                <a href="#about" class="hover:text-white transition-colors">Tentang Saya</a>
+                <a href="#skills" class="hover:text-white transition-colors">Keahlian</a>
+                <a href="#portfolio" class="hover:text-white transition-colors">Portofolio</a>
+                <a href="#contact" class="hover:text-white transition-colors">Kontak</a>
+            </div>
+
+            <p class="text-xs font-light">
+                &copy; <span id="current-year"></span> Adnan Al Rasyid. All Rights Reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Interactions -->
+    <script>
+        // Set Year Dynamically
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Navigation Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileDropdown = document.getElementById('mobile-dropdown');
+        const menuIcon = document.getElementById('menu-icon');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileDropdown.classList.toggle('hidden');
+            if (mobileDropdown.classList.contains('hidden')) {
+                menuIcon.className = 'fa-solid fa-bars text-xl';
+            } else {
+                menuIcon.className = 'fa-solid fa-xmark text-xl';
+            }
+        });
+
+        // Close mobile dropdown on link click
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileDropdown.classList.add('hidden');
+                menuIcon.className = 'fa-solid fa-bars text-xl';
+            });
+        });
+
+        // Interactive Tracking Ambient Glow on Desktop mouse movement
+        const ambientGlow = document.getElementById('ambient-glow');
+        document.addEventListener('mousemove', (e) => {
+            if (window.innerWidth >= 768) { // Only desktop/tablet devices
+                ambientGlow.style.left = e.clientX + 'px';
+                ambientGlow.style.top = e.clientY + 'px';
+            }
+        });
+
+        // Intersection Observer animation on Scroll
+        const revealElements = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, {
+            threshold: 0.15,
+            rootMargin: '0px 0px -50px 0px'
+        });
+
+        revealElements.forEach(element => {
+            observer.observe(element);
+        });
+
+        // Toast Notification System
+        function showToast(title, message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            
+            const toast = document.createElement('div');
+            toast.className = 'flex items-center space-x-3 p-4 rounded-2xl bg-brand-card border border-white/10 shadow-2xl backdrop-blur-md translate-y-2 opacity-0 transition-all duration-300 pointer-events-auto max-w-sm mb-3';
+            
+            let iconMarkup = '<i class="fa-solid fa-circle-check text-emerald-500 text-lg"></i>';
+            if (type === 'error') {
+                iconMarkup = '<i class="fa-solid fa-circle-exclamation text-brand-accent text-lg"></i>';
+            }
+
+            toast.innerHTML = `
+                ${iconMarkup}
+                <div class="flex-1">
+                    <h4 class="text-xs font-bold text-white">${title}</h4>
+                    <p class="text-xs text-brand-muted mt-0.5">${message}</p>
+                </div>
+                <button class="text-brand-muted hover:text-white transition-colors" onclick="this.parentElement.remove()">
+                    <i class="fa-solid fa-xmark text-xs"></i>
+                </button>
+            `;
+
+            container.appendChild(toast);
+
+            // Trigger animation
+            setTimeout(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            }, 10);
+
+            // Auto dismiss toast after 5 seconds
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 5000);
+        }
+
+        // Contact Form Handle Submit
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            const name = document.getElementById('form-name').value;
+            const email = document.getElementById('form-email').value;
+            const message = document.getElementById('form-message').value;
+
+            // Simple validation check
+            if (!name || !email || !message) {
+                showToast('Error Form', 'Harap isi semua kolom input.', 'error');
+                return;
+            }
+
+            // Simulate form submission process
+            showToast('Pesan Dikirim', `Halo ${name}, pesan Anda berhasil terkirim! Saya akan membalas ke ${email} secepatnya.`, 'success');
+            
+            // Reset form
+            document.getElementById('contact-form').reset();
+        }
+
+        // Portfolio Modal Configuration Data
+        const portfolioData = {
+            flowercast: {
+                title: 'FlowerCast Platform',
+                icon: 'fa-podcast',
+                content: `
+                    <p class="text-white font-medium mb-2">Penyebaran Ilmu di Era Digital</p>
+                    <p><strong>FlowerCast</strong> didirikan sebagai kanal audio inklusif yang bertujuan mendemokrasikan pengetahuan. Melalui penyampaian kasual namun berisi kajian kritis mendalam, program ini membahas realitas sosiologis perkotaan, perubahan tren budaya, serta tantangan ekologis modern di Indonesia.</p>
+                    <p class="mt-2"><strong>Peran Utama:</strong> Sebagai Founder, Host Utama, dan Penentu Arah Kreatif serta Kebijakan Editorial.</p>
+                    <p class="mt-2"><strong>Dampak & Statistik:</strong> Membangun komunitas pendengar aktif yang responsif terhadap topik-topik edukasi, mengundang berbagai peneliti tamu berkualitas, dan didengarkan di berbagai kota besar tanah air.</p>
+                `
+            },
+            broadcasting: {
+                title: 'Media Broadcasting Project',
+                icon: 'fa-video',
+                content: `
+                    <p class="text-white font-medium mb-2">Hilirisasi Hasil Riset Melalui Video Kreatif</p>
+                    <p>Merupakan proyek sinergi antara keilmuan akademis dengan kecakapan penyiaran (broadcasting). Kami menerjemahkan laporan penelitian sosial yang tebal dan rumit menjadi naskah video pendek berdurasi 60-90 detik yang menarik visualnya tanpa mengabaikan integritas data ilmiah.</p>
+                    <p class="mt-2"><strong>Fokus Pengerjaan:</strong> Penyuntingan video profesional, pembuatan struktur naskah (storyboarding), pemilihan data krusial, dan optimalisasi SEO konten vertikal di TikTok, Instagram Reels, dan YouTube Shorts.</p>
+                `
+            },
+            sepakbola: {
+                title: 'Riset Sepak Bola & Kebijakan Publik',
+                icon: 'fa-ranking-star',
+                content: `
+                    <p class="text-white font-medium mb-2">Mengapa Sepak Bola Bukan Sekadar Permainan</p>
+                    <p>Penelitian komprehensif ini mengulas sepak bola di Indonesia dari perspektif sosiologis dan hubungannya dengan dinamika kebijakan publik. Fokus riset mencakup tata kelola manajemen klub, regulasi keselamatan suporter, serta implikasi hubungan komunitas suporter akar rumput dengan stabilitas daerah.</p>
+                    <p class="mt-2"><strong>Hasil Riset:</strong> Output riset diterjemahkan menjadi esai opini publik di portal berita populer, bahan presentasi diskusi publik, serta kontribusi aktif dalam pemetaan solusi isu suporter olahraga.</p>
+                `
+            },
+            personalbranding: {
+                title: 'Personal Branding Blueprint',
+                icon: 'fa-id-card-clip',
+                content: `
+                    <p class="text-white font-medium mb-2">Strategi Kredibilitas Profesional Muda</p>
+                    <p>Sebuah panduan perumusan citra diri digital terarah yang dikembangkan khusus bagi kalangan akademisi, peneliti muda, dan kreator konten edukasi di Indonesia agar mampu mengomunikasikan kepakaran mereka di ruang publik modern secara elegan.</p>
+                    <p class="mt-2"><strong>Materi Unggulan:</strong> Penyusunan visual portfolio web modern, optimalisasi LinkedIn & jejaring akademis, penyusunan persona digital, dan teknik merumuskan tagline representatif yang selaras dengan nilai integritas diri.</p>
+                `
+            }
+        };
+
+        // Modal Functions
+        function openModal(key) {
+            const data = portfolioData[key];
+            if (!data) return;
+
+            document.getElementById('modal-title').textContent = data.title;
+            document.getElementById('modal-icon').innerHTML = `<i class="fa-solid ${data.icon}"></i>`;
+            document.getElementById('modal-content').innerHTML = data.content;
+
+            const modal = document.getElementById('portfolio-modal');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // prevent background scrolling
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('portfolio-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = ''; // restore scrolling
+        }
+
+        // Close modal on escape key press
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // --- AI Chatbot Logic ---
+
+        const chatContainer = document.getElementById('chat-container');
+        const chatToggleBtn = document.getElementById('chat-toggle-btn');
+        const chatWindow = document.getElementById('chat-window');
+        const chatCloseBtn = document.getElementById('chat-close-btn');
+        const chatMessages = document.getElementById('chat-messages');
+        const chatInputForm = document.getElementById('chat-input-form');
+        const chatInput = document.getElementById('chat-input');
+        const chatIcon = document.getElementById('chat-icon');
+
+        // Initial greeting
+        const initialGreeting = "Halo! Saya Asisten AI Adnan Al Rasyid. Tanyakan apa saja tentang Adnan, keahliannya, atau proyeknya.";
+        addMessage('ai', initialGreeting);
+
+        chatToggleBtn.addEventListener('click', toggleChat);
+        chatCloseBtn.addEventListener('click', toggleChat);
+        chatInputForm.addEventListener('submit', handleChatSubmit);
+
+        function toggleChat() {
+            chatWindow.classList.toggle('hidden');
+            chatContainer.classList.toggle('scale-100');
+            chatContainer.classList.toggle('scale-105');
+            
+            // Toggle icon from robot to comment
+            if (chatWindow.classList.contains('hidden')) {
+                chatIcon.className = 'fa-solid fa-robot text-2xl';
+            } else {
+                chatIcon.className = 'fa-solid fa-comment-dots text-2xl animate-pulse';
+                chatInput.focus();
+            }
+        }
+
+        function handleChatSubmit(event) {
+            event.preventDefault();
+            const userMessage = chatInput.value.trim();
+            if (!userMessage) return;
+
+            // Add user message to chat
+            addMessage('user', userMessage);
+            chatInput.value = '';
+
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Show typing indicator
+            const typingId = showTypingIndicator();
+
+            // Simulate API call to Gemini
+            simulateGeminiApiCall(userMessage).then(aiResponse => {
+                // Remove typing indicator
+                removeTypingIndicator(typingId);
+                // Add AI response to chat
+                addMessage('ai', aiResponse);
+                // Scroll to bottom
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            });
+        }
+
+        function addMessage(sender, text) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `flex ${sender === 'user' ? 'justify-end' : ''}`;
+            
+            const bubbleDiv = document.createElement('div');
+            bubbleDiv.className = `max-w-[80%] rounded-2xl px-4 py-2.5 ${sender === 'user' ? 'bg-brand-accent text-white rounded-br-lg' : 'bg-white/5 rounded-bl-lg'}`;
+            
+            const senderSpan = document.createElement('span');
+            senderSpan.className = 'block text-xs font-bold mb-1';
+            senderSpan.textContent = sender === 'user' ? 'Anda' : 'Adnan AI';
+            
+            const textP = document.createElement('p');
+            textP.textContent = text;
+            
+            bubbleDiv.appendChild(senderSpan);
+            bubbleDiv.appendChild(textP);
+            messageDiv.appendChild(bubbleDiv);
+            chatMessages.appendChild(messageDiv);
+        }
+
+        function showTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'flex';
+            typingDiv.id = `typing-${Date.now()}`;
+            
+            const bubbleDiv = document.createElement('div');
+            bubbleDiv.className = 'max-w-[80%] rounded-2xl px-4 py-2.5 bg-white/5 rounded-bl-lg';
+            
+            const senderSpan = document.createElement('span');
+            senderSpan.className = 'block text-xs font-bold mb-1';
+            senderSpan.textContent = 'Adnan AI';
+            
+            const typingDotsDiv = document.createElement('div');
+            typingDotsDiv.className = 'flex space-x-1 items-center h-4';
+            for (let i = 0; i < 3; i++) {
+                const dot = document.createElement('span');
+                dot.className = `w-1.5 h-1.5 rounded-full bg-brand-muted animate-pulse delay-${i * 150}`;
+                typingDotsDiv.appendChild(dot);
+            }
+            
+            bubbleDiv.appendChild(senderSpan);
+            bubbleDiv.appendChild(typingDotsDiv);
+            typingDiv.appendChild(bubbleDiv);
+            chatMessages.appendChild(typingDiv);
+            return typingDiv.id;
+        }
+
+        function removeTypingIndicator(id) {
+            const typingDiv = document.getElementById(id);
+            if (typingDiv) {
+                typingDiv.remove();
+            }
+        }
+
+        // Simulates a call to the Gemini API with a system prompt and Adnan's profile data
+        function simulateGeminiApiCall(userPrompt) {
+            return new Promise((resolve) => {
+                // Adnan's Profile Data for system prompt context
+                const profileData = {
+                    name: "Adnan Al Rasyid",
+                    tagline: "Knowledge is power. Character is more.",
+                    professions: ["Content Creator", "Researcher", "Founder FlowerCast"],
+                    location: "Bandung, Indonesia",
+                    about: "Saya menjembatani jurang pemisah antara riset teoretis yang mendalam dengan penyampaian media digital yang kreatif, edukatif, dan inklusif. Pendirian FlowerCast adalah wujud konkret dari visi saya untuk menyediakan platform penyiaran alternatif yang mencerahkan pikiran masyarakat Indonesia.",
+                    skills: ["Research", "Public Speaking", "Content Strategy", "Social Media Management", "Journalism", "Web Development"],
+                    portfolio: [
+                        { title: "FlowerCast", type: "Founder", desc: "Platform podcast inovatif berbasis edukasi." },
+                        { title: "Project Media Broadcasting", type: "Broadcasting", desc: "Inisiatif pemanfaatan teknologi broadcasting mutakhir untuk merancang, mengedit, serta mempublikasikan hasil riset akademis ke format konten video vertikal." },
+                        { title: "Penelitian Sepak Bola & Kebijakan", type: "Research", desc: "Analisis sosiologi olahraga dan tinjauan komprehensif atas tata kelola, kemitraan strategis klub, relasi suporter, serta intervensi regulasi pemerintah." },
+                        { title: "Personal Branding Project", type: "Strategy", desc: "Penyusunan blueprint personal branding bagi para akademisi, analis riset, serta kreator pemula." }
+                    ],
+                    contact: {
+                        instagram: "@adnanrasyid_",
+                        tiktok: "@adnanalrasyid",
+                        youtube: "Adnan Al Rasyid",
+                        email: "contact@adnanalrasyid.com"
+                    }
+                };
+
+                // System Prompt in Indonesian
+                const systemPrompt = `Anda adalah asisten AI profesional dan membantu untuk Adnan Al Rasyid. Adnan adalah seorang ${profileData.professions.join(', ')} yang tinggal di ${profileData.location}. Tagline-nya adalah "${profileData.tagline}". Gunakan data berikut untuk menjawab pertanyaan pengguna dengan sopan dan informatif dalam Bahasa Indonesia:\n\n` +
+                                     `- Tentang Adnan: ${profileData.about}\n` +
+                                     `- Keahlian: ${profileData.skills.join(', ')}\n` +
+                                     `- Portofolio: ${profileData.portfolio.map(p => `${p.title} (${p.type}): ${p.desc}`).join('; ')}\n` +
+                                     `- Kontak: Instagram ${profileData.contact.instagram}, TikTok ${profileData.contact.tiktok}, YouTube ${profileData.contact.youtube}, Email ${profileData.contact.email}.\n\n` +
+                                     `Jika pertanyaan tidak dapat dijawab menggunakan data ini, katakan bahwa Anda tidak memiliki informasi tersebut dan sarankan pengguna untuk menghubungi Adnan secara langsung melalui email. Jangan membuat informasi baru.`;
+
+                // Simulating a network delay
+                setTimeout(() => {
+                    let response;
+                    const lowerPrompt = userPrompt.toLowerCase();
+
+                    // Rule-based simulation logic to mimic LLM responses
+                    if (lowerPrompt.includes('siapa') && lowerPrompt.includes('adnan')) {
+                        response = `${profileData.name} adalah seorang ${profileData.professions.join(', ')} yang berdedikasi. Tagline-nya adalah "${profileData.tagline}".`;
+                    } else if (lowerPrompt.includes('tinggal') || lowerPrompt.includes('lokasi')) {
+                        response = `${profileData.name} tinggal di ${profileData.location}.`;
+                    } else if (lowerPrompt.includes('flowercast')) {
+                        const project = profileData.portfolio.find(p => p.title === "FlowerCast");
+                        response = `Tentu! FlowerCast adalah ${project.desc} Adnan adalah Founder-nya.`;
+                    } else if (lowerPrompt.includes('proyek') || lowerPrompt.includes('portofolio') || lowerPrompt.includes('karya')) {
+                        const titles = profileData.portfolio.map(p => p.title).join(', ');
+                        response = `Proyek Adnan meliputi: ${titles}. Yang mana yang ingin Anda ketahui lebih lanjut?`;
+                    } else if (lowerPrompt.includes('keahlian') || lowerPrompt.includes('skill') || lowerPrompt.includes('bisa')) {
+                        response = `Adnan memiliki keahlian dalam: ${profileData.skills.join(', ')}.`;
+                    } else if (lowerPrompt.includes('tentang')) {
+                        response = `${profileData.about}`;
+                    } else if (lowerPrompt.includes('kontak') || lowerPrompt.includes('hubung') || lowerPrompt.includes('email') || lowerPrompt.includes('sosmed') || lowerPrompt.includes('instagram') || lowerPrompt.includes('tiktok') || lowerPrompt.includes('youtube')) {
+                        response = `Anda dapat menghubungi Adnan melalui email di ${profileData.contact.email} atau di media sosial: Instagram ${profileData.contact.instagram}, TikTok ${profileData.contact.tiktok}, YouTube ${profileData.contact.youtube}.`;
+                    } else {
+                        response = "Maaf, saya tidak memiliki informasi spesifik mengenai hal tersebut. Silakan hubungi Adnan secara langsung melalui email untuk informasi lebih lanjut.";
+                    }
+                    resolve(response);
+                }, 1500); // 1.5 second delay
+            });
+        }
+
+    </script>
+</body>
+</html>
